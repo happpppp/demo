@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="/admin/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="/admin/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="/admin/css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="/admin/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="/admin/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/admin/img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="/admin/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="/admin/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
+    <script src="/admin/vendor/jquery/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+    <script src="/admin/js/summernote-zh-CN.js"></script>
+    <link href="/admin/fileinput/css/bootstrap-fileinput.css" rel="stylesheet">
+    <script src="/admin/fileinput/js/bootstrap-fileinput.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      <% include ../common/header.ejs %>
+      <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <% include ../common/slider.ejs %>
+        <div class="content-inner">
+          <!-- Page Header-->
+          <!-- Breadcrumb-->
+          <% include ../common/crumb.ejs %>
+          <section class="tables">   
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card">
+                      <div class="card-header d-flex align-items-center">
+                        <h3 class="h4">修改</h3>
+                      </div>
+                      <div class="card-body">
+                        <!-- <p>Lorem ipsum dolor sit amet consectetur.</p> -->
+                        <!-- <form class="form-horizontal"> -->
+                          <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">广告图</label>
+                            <div class="col-sm-9">
+                              <form id="uploadForm" enctype='multipart/form-data'>
+                                  <div class="form-group">
+                                      <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                          <div class="fileinput-new thumbnail" style="width: 250px;height: auto;max-height:200px;">
+                                              <img id='picImg' style="width: 100%;height: auto;max-height: 200px;" src="<%= page_data.banner %>" alt="" />
+                                          </div>
+                                          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 250px; max-height: 200px;"></div>
+                                          <div>
+                                              <span class="btn btn-dark small btn-file">
+                                                  <span class="fileinput-new">+</span>
+                                                  <span class="fileinput-exists">+</span>
+                                                  <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                              </span>
+                                              <a href="javascript:;" class="btn btn-dark fileinput-exists" data-dismiss="fileinput">-</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">标题</label>
+                            <div class="col-sm-9">
+                              <input id="title" type="email" value="<%= page_data.title %>" placeholder="字数限定提示" class="form-control form-control-success"><small class="form-text">文章的标题会显示到页面的列表.</small>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">副标题</label>
+                            <div class="col-sm-9">
+                              <input id="sub_title" type="email" value="<%= page_data.sub_title %>" placeholder="字数限定提示" class="form-control form-control-success"><small class="form-text">文章简短的介绍.</small>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">正文</label>
+                            <div class="col-sm-9">
+                              <div id="summernote"></div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">作者</label>
+                            <div class="col-sm-9">
+                              <input id="auth" value="<%= page_data.detail.auth %>" type="email" placeholder="字数限定提示" class="form-control form-control-success">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">作者头像</label>
+                            <div class="col-sm-9">
+                              <form id="uploadForm_icon" enctype='multipart/form-data'>
+                                  <div class="form-group">
+                                      <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                          <div class="fileinput-new thumbnail" style="width: 100px;height: auto;max-height:100px;">
+                                              <img id='picImg' style="width: 100%;height: auto;max-height: 100px;" src="<%= page_data.detail.icon %>" alt="" />
+                                          </div>
+                                          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100px; max-height: 100px;"></div>
+                                          <div>
+                                              <span class="btn btn-dark small btn-file">
+                                                  <span class="fileinput-new">+</span>
+                                                  <span class="fileinput-exists">+</span>
+                                                  <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                              </span>
+                                              <a href="javascript:;" class="btn btn-dark fileinput-exists" data-dismiss="fileinput">-</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="form-group row">       
+                            <div class="col-sm-10 offset-sm-3">
+                              <input type="button" value="提交" class="btn btn-success" id="commit">
+                              <script>
+                                $(function(){
+                                  $('#summernote').summernote({
+                                    placeholder: 'https://summernote.org',
+                                    tabsize: 2,
+                                    minHeight: 300,
+                                    lang: 'zh-CN'
+                                  });
+                                  var content = '<%- page_data.detail.content %>';//非转义
+                                  $('#summernote').summernote('code', content)
+                                  $('#commit').click(function(){
+                                    var content = $('#summernote').summernote('code')
+                                    var title=$("#title").val();
+                                    var sub_title=$("#sub_title").val();
+                                    var auth=$("#auth").val();
+
+                                    //FormData混合提交 流文件与普通表单混合
+                                    //https://blog.csdn.net/qq_36947174/article/details/82709124
+
+                                    var form_data = new FormData();
+                                    form_data.append('content',content);
+                                    form_data.append('title',title);
+                                    form_data.append('sub_title',sub_title);
+                                    form_data.append('auth',auth);
+                                    form_data.append('dataName',"<%=dataName%>");
+
+                                    form_data.append('banner',$('#uploadForm #picID')[0].files[0]);//添加流
+                                    form_data.append('banner_old','<%= page_data.banner %>')
+                                    form_data.append('icon',$('#uploadForm_icon #picID')[0].files[0]);
+                                    form_data.append('icon_old','<%= page_data.detail.icon %>')
+
+                                    form_data.append('_id','<%= page_data._id %>')
+                                    form_data.append('start','<%= start %>')
+                                    form_data.append('q','<%= q %>')
+                                    form_data.append('rule','<%= rule %>')
+                                    form_data.append('count','<%= count %>')
+
+                                    $.ajax({
+                                      url: '/admin/banner/check/submit',
+                                      type: 'POST',
+                                      data:form_data,
+                                      contentType: false,//不设置编码类型,在进行文件流与普通字符串混合上传的时候，需要设置为false
+                                      processData: false,//不进行数据处理
+                                      success: function (url) {
+                                        window.location.href=url;//前端跳转
+                                      },
+                                      error: function (data) {
+                                          console.log(data.status);
+                                      }
+                                    });
+                                  })
+                                })
+                              </script>
+                            </div>
+                          </div>
+                        <!-- </form> -->
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </section>
+          <!-- Page Footer-->
+          <% include ../common/footer.ejs %>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="/admin/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="/admin/vendor/chart.js/Chart.min.js"></script>
+    <script src="/admin/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Main File-->
+    <script src="/admin/js/front.js"></script>
+  </body>
+</html>

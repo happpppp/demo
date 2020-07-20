@@ -1,0 +1,23 @@
+<% if(page_count>0){%>
+<nav aria-label="...">
+  <ul class="pagination small">
+    
+    <li class="page-item <%= start===1 ? 'disabled' : '' %>">
+      <a class="page-link" href="<%= '/admin/' + api_name + '?dataName=' + dataName + '&rule=' + rule + '&q=' + q + '&start=' + (start-1) + '&count=' + count %>">上一页</a>
+    </li>
+    
+    <% for(var i=1; i<=page_count; i++) {%>
+    <li class="page-item <%= start===i ? 'active' : '' %>">
+      <a class="page-link" href="<%= '/admin/' + api_name + '?dataName=' + dataName + '&rule=' + rule + '&q=' + q + '&start=' + i + '&count=' + count %>"><%= i %></a>
+    </li>
+    <% }%>
+    
+   
+
+    <li class="page-item <%= start==page_count ? 'disabled' : '' %>">
+      <a class="page-link" href="<%= '/admin/' + api_name + '?dataName=' + dataName + '&rule=' + rule + '&q=' + q + '&start=' + (start+1) + '&count=' + count %>">下一页</a>
+    </li>
+    
+  </ul>
+</nav>
+<% }%>

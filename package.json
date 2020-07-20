@@ -1,0 +1,25 @@
+{
+  "name": "2020-2-25",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "pm2": "pm2 start ./bin/www --name='node-server-9001' --watch"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "express-http-proxy": "^1.6.0",
+    "http-errors": "~1.6.2",
+    "http-proxy-middleware": "^1.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.3",
+    "morgan": "~1.9.0",
+    "multer": "^1.4.2",
+    "socket.io": "^2.3.0"
+  }
+}

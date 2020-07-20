@@ -1,0 +1,28 @@
+用户端
+http://localhost:9001/api/xxx
+http://localhost:9001/api/goods/home
+http://localhost:9001/api/goods/follow
+http://localhost:9001/api/goods/column
+http://localhost:9001/api/goods/.....
+
+http://localhost:9001/api/login
+http://localhost:9001/api/reg
+http://localhost:9001/api/user
+http://localhost:9001/api/logout
+
+	参数携带
+
+	接口名?_page=xx&_limit=xx&q=xx&sort=xx
+
+	  _page:0,
+	  _limit:10,
+	  q:'',//搜索关键字
+	  _sort:'time',
+
+管理端
+http://localhost:9001/admin
+http://localhost:9001/admin/login
+http://localhost:9001/admin/logout
+
+后端代理
+http://localhost:9001/proxy/juhe

@@ -1,0 +1,129 @@
+#!/usr/bin/env node
+
+/**
+ * 引入模块依赖
+ */
+
+var app = require('../app');
+var debug = require('debug')('2020-2-25:server');
+var fs = require('fs');
+
+var config = require('../config/server');//引入配置模块
+
+var http,port,server//模块，端口,服务器
+//根据不同环境，来生成不同的服务器和端口
+if(config.local.open){
+  http = require('http');
+  port = config.local.port
+  server = http.createServer(app);
+}else if(config.http.open){
+  http = require('http');
+  port = config.http.port;
+  server = http.createServer(app);
+}else if(config.https.open){
+  http = require('https');
+  port = config.https.port;
+
+  //SSL证书
+  var options = {
+    key: fs.readFileSync('./bin/xxx.key'),
+    cert: fs.readFileSync('./bin/xxx.pem')
+  }
+
+  server = http.createServer(options,app);
+
+}
+
+/**
+ * 生成端口号，默认去环境变量里面的port->
+ */
+
+
+// port = normalizePort(process.env.PORT || port);
+app.set('port', port);//~~ app.listen(..) 告诉app要去监听3001端口，还没监听
+
+/**
+ * 创建服务器
+ */
+
+
+/**
+ * 
+ */
+
+
+
+
+const SOCKETIO = require('socket.io');//创建socket实例
+const io = SOCKETIO.listen(server);//监听http实例，未来3001端口下的http请求，会触发socket
+
+//实现聊天室
+require('../sockets/bbs')(io);//socket监听
+
+
+server.listen(port);//监听端口
+server.on('error', onError);//监听错误
+server.on('listening', onListening);//监听日志
+
+/**
+ * 把端口，处理成数组，字符，或者boolean
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' 已占用');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+
+module.exports = io;//导出

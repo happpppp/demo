@@ -1,0 +1,44 @@
+<nav class="side-navbar">
+  <!-- Sidebar Header-->
+  <div class="sidebar-header d-flex align-items-center">
+    <div class="avatar">
+      <img
+        src="<%= icon ? icon : 'https://avatars0.githubusercontent.com/u/22891692?s=460&v=4' %>" alt="..."
+        class="img-fluid rounded-circle">
+       
+      </div>
+    <!-- <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div> -->
+    <div class="title">
+      <h1 class="h4"><%= username %></h1>
+      <p>职业</p>
+    </div>
+  </div>
+  <!-- Sidebar Navidation Menus--><span class="heading">导航</span>
+  <ul class="list-unstyled">
+    <li class="<%= active=='index' ? 'active' : '' %>"><a href="/admin/home"> <i class="icon-home "></i>首页 </a></li>
+    <li>
+        <a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i
+          class="icon-interface-windows"></i>商品 </a>
+      <ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
+        <li class="<%= active=='home' ? 'active' : '' %>"><a href="/admin/product?dataName=home&start=1">主屏</a></li>
+        <li class="<%= active=='follow' ? 'active' : '' %>"><a href="/admin/product?dataName=follow&start=1">关注</a></li>
+        <li class="<%= active=='column' ? 'active' : '' %>"><a href="/admin/product?dataName=column&start=1">栏目</a></li>
+      </ul>
+    </li>
+    <li class="<%= active=='user' ? 'active' : '' %>"><a href="/admin/user?dataName=user"> <i class="fa icon-picture"></i>用户 </a>
+    </li>
+    <li class="<%= active=='banner' ? 'active' : '' %>"><a href="/admin/banner?dataName=banner"> <i class="fa icon-flask"></i>主屏广告 </a>
+    </li>
+    <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
+          class="icon-interface-windows"></i>下拉 </a>
+      <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+        <li><a href="#">菜单</a></li>
+        <li><a href="#">菜单</a></li>
+        <li><a href="#">菜单</a></li>
+      </ul>
+    </li>
+  </ul><span class="heading">扩展</span>
+  <ul class="list-unstyled">
+    <li> <a href="#"> <i class="icon-flask"></i>菜单1 </a></li>
+  </ul>
+</nav>
