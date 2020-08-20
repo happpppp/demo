@@ -7,7 +7,7 @@
     "pm2": "pm2 start ./bin/www --name='node-server-9001' --watch"
   },
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
